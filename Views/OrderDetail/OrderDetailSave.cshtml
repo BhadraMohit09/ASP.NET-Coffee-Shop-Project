@@ -1,0 +1,70 @@
+﻿@model OrderDetailModel
+<main id="main" class="main">
+    <form method="post" asp-action="SaveOrderDetail" asp-controller="OrderDetail">
+        @Html.HiddenFor(x => x.OrderDetailID)
+
+        <div class="container">
+            <h2 class="text-center">Order Details</h2>
+            <div class="form-group">
+                <label><span class="text-danger">*</span>OrderDetailID</label>
+                <input type="text" class="form-control" asp-for="OrderDetailID"/>
+                <span asp-validation-for="OrderDetailID" class="text-danger"></span>
+            </div>
+            <br />
+            <div class="form-group">
+                <label><span class="text-danger">*</span>Order ID</label>
+                <input type="number" class="form-control" asp-for="OrderID"/>
+                <span asp-validation-for="OrderID" class="text-danger"></span>
+            </div>
+            <br />
+            <div class="form-group">
+                <label><span class="text-danger">*</span>Product ID</label>
+                <input type="number" class="form-control" asp-for="ProductID"/>
+                <span asp-validation-for="ProductID" class="text-danger"></span>
+            </div>
+            <br />
+            <div class="form-group">
+                <label><span class="text-danger">*</span>Quantity</label>
+                <input type="text" class="form-control" asp-for="Quantity"/>
+                <span asp-validation-for="Quantity" class="text-danger"></span>
+            </div>
+            <br />
+            <div class="form-group">
+                <label><span class="text-danger">*</span>Amount</label>
+                <input type="text" class="form-control" asp-for="Amount"/>
+                <span asp-validation-for="Amount" class="text-danger"></span>
+            </div>
+            <br />
+            <div class="form-group">
+                <label><span class="text-danger">*</span>Total Amount</label>
+                <input type="number" class="form-control" asp-for="TotalAmount"/>
+                <span asp-validation-for="TotalAmount" class="text-danger"></span>
+            </div>
+            <br />
+
+            <div class="form-group">
+                <label><span class="text-danger">*</span>UserID</label>
+                <div class="dropdown">
+                    <select class="w-25 p-2" asp-for="UserID">
+                        <option>1</option>
+                        <option>2</option>
+                    </select>
+                    <span asp-validation-for="UserID" class="text-danger"></span>
+                </div>
+
+            </div>
+
+
+            <br />
+            <div>
+                <button type="submit" class="btn btn-primary px-5">Submit</button>
+            </div>
+        </div>
+    </form>
+</main>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}

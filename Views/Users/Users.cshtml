@@ -1,0 +1,53 @@
+﻿@* @model List<FormCRUDB_MAB.Models.UsersModel> *@
+@model DataTable
+@using System.Data
+<div class="main" id="main">
+    <div class="card">
+        <div class="card-body">
+            <h5 class="card-title text-start">User Details</h5>
+
+            <!-- Table with hoverable rows -->
+            <table class="table table-hover">
+                <thead>
+                    <a class="btn btn-primary float-end" asp-controller="Users" asp-action="UsersSave">Add Users</a>
+                    <tr>
+                        <th scope="col">UserName</th>
+                        <th scope="col">Email</th>
+                        <th scope="col">Password</th>
+                        <th scope="col">MobileNo</th>
+                        <th scope="col">Address</th>
+                        <th scope="col">IsActive</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (DataRow users in Model.Rows)
+                    {
+                        <tr>
+                            <td>@users["UserName"]</td>
+                            <td>@users["Email"]</td>
+                            <td>@users["Password"]</td>
+                            <td>@users["MobileNo"]</td>
+                            <td>@users["Address"]</td>
+                            <td>@users["IsActive"]</td>
+                            <td><a class="btn btn-outline-secondary btn-xs" asp-controller="Users" asp-action="UsersSave" asp-route-UserID="@users["UserID"]"><i class="bi bi-pencil"></i></a></td>
+                            <td>
+                                <form method="post" asp-controller="Users" asp-action="UsersDelete">
+                                    <input type="hidden" name="UserID" value="@users["UserID"]" />
+                                    <button onclick="return confirm('Are you sure you want to Delete?')" type="submit" class="btn btn-outline-danger btn-xs">
+                                        <i class="bi bi-trash"></i>
+                                    </button>
+                                </form>
+                            </td>
+                        </tr>
+                    }
+                    @* <tr>
+                        <td></td>
+                        
+                    </tr> *@
+                </tbody>
+            </table>
+            <!-- End Table with hoverable rows -->
+
+        </div>
+    </div>
+</div>

@@ -1,0 +1,27 @@
+﻿@model CustomerModel
+
+<main id="main" class="main">
+    @using (Html.BeginForm())
+    {
+        <h3 class="text-center">@Html.Label("Customer Details")</h3>
+        <p><span class="text-danger">*</span>@Html.LabelFor(m => m.CustomerName, "Enter Customer Name", new { @class = "fs-5" })</p>
+        <p>@Html.TextBoxFor(m => m.CustomerName, "Product Name", new { @class = "form-control w-75 p-2" })</p>
+
+        <p><span class="text-danger">*</span>@Html.LabelFor(m => m.Address, "Enter Address", new { @class = "fs-5" })</p>
+        <p>@Html.TextAreaFor(m => m.Address, new { @class = "form-control w-75 p-2" })</p>
+
+        <p><span class="text-danger">*</span>@Html.LabelFor(m => m.Email, "Enter EmailAddress", new { @class = "fs-5" })</p>
+        <p>@Html.TextBoxFor(m => m.Email, new { @class = "form-control w-75" })</p>
+
+        <p><span class="text-danger">*</span>@Html.LabelFor(m => m.MobileNo, "Enter Mobile #", new { @class = "fs-5" })</p>
+        <p>@Html.TextBoxFor(m => m.MobileNo, new { @class = "form-control w-75 p-2" })</p>
+
+
+        <p><span class="text-danger">*</span>@Html.LabelFor(m => m.GSTNO, "Enter GST NO", new { @class = "fs-5" })</p>
+        <p>@Html.TextBoxFor(m => m.GSTNO, "GSTNO", new { @class = "form-control w-75 p-2" })</p>
+
+        <p><span class="text-danger">*</span>@Html.LabelFor(m=> m.CityName, "Enter City", new { @class = "fs-5" })</p>
+        <p>@Html.TextBoxFor(m=> m.CityName, "City", new { @class = "form-control w-50 p-2" })</p>
+        <button class="btn btn-secondary w-25">Submit</button>
+    }
+</main>

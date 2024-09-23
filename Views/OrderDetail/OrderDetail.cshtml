@@ -1,0 +1,53 @@
+﻿@* @model List<FormCRUDB_MAB.Models.OrderDetailModel> *@
+@model DataTable
+@using System.Data
+<div class="main" id="main">
+    <div class="card">
+        <div class="card-body">
+            <h3 class="card-title text-start">Specific Order Details</h3>
+
+            <!-- Table with hoverable rows -->
+            <table class="table table-hover">
+                <thead>
+                    
+                    <a class="btn btn-primary float-end" asp-controller="OrderDetail" asp-action="OrderDetailSave">Add Order Detail</a>
+                    <tr>
+                        <th scope="col">Order ID</th>
+                        <th scope="col">Product ID</th>
+                        <th scope="col">Quantity</th>
+                        <th scope="col">Amount</th>
+                        <th scope="col">Total Amount</th>
+                        <th scope="col">User ID</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (DataRow orderDetail in Model.Rows)
+                    {
+                        <tr>
+                            <td>@orderDetail["OrderID"]</td>
+                            <td>@orderDetail["ProductID"]</td>
+                            <td>@orderDetail["Quantity"]</td>
+                            <td>@orderDetail["Amount"]</td>
+                            <td>@orderDetail["TotalAmount"]</td>
+                            <td>@orderDetail["UserID"]</td>
+                            <td><a class="btn btn-outline-secondary btn-xs" asp-controller="OrderDetail" asp-action="OrderDetailSave" asp-route-OrderDetailID="@orderDetail["OrderDetailID"]"><i class="bi bi-pencil"></i></a></td>
+                            <td>
+                                <form method="post" asp-controller="OrderDetail" asp-action="OrderDetailDelete">
+                                    <input type="hidden" name="OrderDetailID" value="@orderDetail["OrderDetailID"]" />
+                                    <button onclick="return confirm('Are you sure you want to Delete?')" type="submit" class="btn btn-outline-danger btn-xs">
+                                        <i class="bi bi-trash"></i>
+                                    </button>
+                                </form>
+                            </td>
+                        </tr>
+                    }
+                    <tr>
+                        <td</td>
+                    </tr>
+                </tbody>
+            </table>
+            <!-- End Table with hoverable rows -->
+
+        </div>
+    </div>
+</div>

@@ -1,0 +1,54 @@
+﻿@* @model List<FormCRUDB_MAB.Models.ProductModel> *@
+@model DataTable
+@using System.Data
+<div class="main" id="main">
+    <div class="card">
+        <div class="card-body">
+            <h5 class="card-title text-start">Product Details</h5>
+
+            <!-- Table with hoverable rows -->
+            <table class="table table-hover">
+                <thead>
+                    <a class="btn btn-primary float-end" asp-controller="Product" asp-action="ProductSave">Add Product</a>
+                    <tr>
+                        <th scope="col">Product Name</th>
+                        <th scope="col">Price</th>
+                        <th scope="col">Code</th>
+                        <th scope="col">Description</th>
+                        <th scope="col">Product Code</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (DataRow dataRow in Model.Rows)
+                    {
+                        <tr>
+                            <td>@dataRow["ProductName"]</td>
+                            <td>@dataRow["ProductPrice"]</td>
+                            <td>@dataRow["ProductCode"]</td>
+                            <td>@dataRow["Description"]</td>
+                            <td>@dataRow["ProductCode"]</td>
+                            <td><a class="btn btn-outline-secondary btn-xs" asp-controller="Product" asp-action="ProductSave" asp-route-ProductID="@dataRow["ProductID"]"><i class="bi bi-pencil"></i></a></td>
+                            <td>
+                                <form method="post" asp-controller="Product" asp-action="ProductDelete">
+                                    <input type="hidden" name="ProductID" value="@dataRow["ProductID"]" />
+                                    <button onclick="return confirm('Are you sure you want to Delete?')" type="submit" class="btn btn-outline-danger btn-xs">
+                                        <i class="bi bi-trash"></i>
+                                    </button>
+                                </form>
+                            </td>
+                        </tr>
+                    }
+                    <tr>
+                        <td></td>
+                    </tr>
+
+                   @*  <tr>
+                        <td><a class="btn btn-primary" asp-controller="Product" asp-action="AddProductHelper">Add Product(Helpers)</a></td>
+                    </tr> *@
+                </tbody>
+            </table>
+            <!-- End Table with hoverable rows -->
+
+        </div>
+    </div>
+</div>

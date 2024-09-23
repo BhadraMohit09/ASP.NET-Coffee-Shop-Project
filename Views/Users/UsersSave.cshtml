@@ -1,0 +1,60 @@
+﻿@model UsersModel
+
+<main id="main" class="main">
+    <form method="post" asp-action="SaveUsers" asp-controller="Users">
+        @Html.HiddenFor(x => x.UserID)
+
+        <div class="container">
+            <h2 class="text-center">User Details</h2>
+            <div class="form-group">
+                <label><span class="text-danger">*</span>Username</label>
+                <input type="text" class="form-control" asp-for="UserName"/>
+                <span asp-validation-for="UserName" class="text-danger"></span>
+            </div>
+            <br />
+            <div class="form-group">
+                <label><span class="text-danger">*</span>Email</label>
+                <input type="email" class="form-control" asp-for="UserEmail"/>
+                <span asp-validation-for="UserEmail" class="text-danger"></span>
+            </div>
+            <br />
+            <div class="form-group">
+                <label><span class="text-danger">*</span>Password</label>
+                <input type="text" class="form-control" asp-for="Password"/>
+                <span asp-validation-for="Password" class="text-danger"></span>
+            </div>
+            <br />
+            <div class="form-group">
+                <label><span class="text-danger">*</span>Mobile No</label>
+                <input type="tel" class="form-control" asp-for="MobileNo"/>
+                <span asp-validation-for="MobileNo" class="text-danger"></span>
+            </div>
+            <br />
+            <div class="form-group">
+                <label><span class="text-danger">*</span>Address</label>
+                <input type="text" class="form-control" asp-for="Address"/>
+                <span asp-validation-for="Address" class="text-danger"></span>
+            </div>
+            <br />
+            <div class="form-group">
+                <label><span class="text-danger">*</span>IsActive</label>
+                <input type="text" class="form-control" asp-for="IsActive" />
+                <span asp-validation-for="IsActive" class="text-danger"></span>
+            </div>
+            <br />
+
+            <br />
+            <div>
+                <button type="submit" class="btn btn-primary px-5">Submit</button>
+            </div>
+        </div>
+    </form>
+</main>
+
+@section Scripts
+{
+
+    @{
+        await Html.RenderPartialAsync("_validationscriptspartial");
+    }
+}

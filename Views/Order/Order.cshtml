@@ -1,0 +1,52 @@
+﻿@* @model List<FormCRUDB_MAB.Models.OrderModel> *@
+@model DataTable
+@using System.Data
+<div class="main" id="main">
+    <div class="card">
+        <div class="card-body">
+            <h3 class="card-title text-start">Orders Details</h3>
+
+            <!-- Table with hoverable rows -->
+            <table class="table table-hover">
+                <thead>
+                    <a class="btn btn-primary float-end" asp-controller="Order" asp-action="OrderSave">Add Order</a>
+                    <tr>
+                        <th scope="col" class="mb-3">Order Date</th>
+                        <th scope="col">Customer</th>
+                        <th scope="col">Payment Mode</th>
+                        <th scope="col">Total Amount</th>
+                        <th scope="col">Shipping Address</th>
+                        <th scope="col">User ID</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (DataRow order in Model.Rows)
+                    {
+                        <tr>
+                            <td>@order["OrderDate"]</td>
+                            <td>@order["CustomerID"]</td>
+                            <td>@order["PaymentMode"]</td>
+                            <td>@order["TotalAmount"]</td>
+                            <td>@order["ShippingAddress"]</td>
+                            <td>@order["UserID"]</td>
+                            <td><a class="btn btn-outline-secondary btn-xs" asp-controller="Order" asp-action="OrderSave" asp-route-OrderID="@order["OrderID"]"> <i class="bi bi-pencil"></i></a></td>
+                            <td>
+                                <form method="post" asp-controller="Order" asp-action="OrderDelete">
+                                    <input type="hidden" name="OrderID" value="@order["OrderID"]" />
+                                    <button onclick="return confirm('Are you sure you want to Delete?')" type="submit" class="btn btn-outline-danger btn-xs">
+                                        <i class="bi bi-trash"></i>
+                                    </button>
+                                </form>
+                            </td>
+                        </tr>
+                    }
+                    <tr>
+                        <td></td>
+                    </tr>
+                </tbody>
+            </table>
+            <!-- End Table with hoverable rows -->
+
+        </div>
+    </div>
+</div>

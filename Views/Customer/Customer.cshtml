@@ -1,0 +1,63 @@
+﻿@* @model List<FormCRUDB_MAB.Models.CustomerModel> *@
+@model DataTable
+@using System.Data
+<div class="main" id="main">
+    <div class="card">
+        <div class="card-body">
+            <h5 class="card-title text-start">Customer Details</h5>
+
+            <!-- Table with hoverable rows -->
+            <table class="table table-hover">
+                <thead>
+                    <a class="btn btn-primary float-end" asp-controller="Customer" asp-action="CustomerSave">Add Customer</a>
+                    <tr>
+                      
+                        <th scope="col">Name</th>
+                        <th scope="col">Address</th>
+                        <th scope="col">Email</th>
+                        <th scope="col">Mobile</th>
+                        <th scope="col">GSTIN</th>
+                        <th scope="col">City</th>
+                        <th scope="col">Pincode</th>
+                        <th scope="col">NetAmount</th>
+                        <th scope="col">UserID</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (DataRow customer in Model.Rows)
+                    {
+                        <tr>
+           
+                            <td>@customer["CustomerName"]</td>
+                            <td>@customer["HomeAddress"]</td>
+                            <td>@customer["Email"]</td>
+                            <td>@customer["MobileNo"]</td>
+                            <td>@customer["GST_NO"]</td>
+                            <td>@customer["CityName"]</td>
+                            <td>@customer["PinCode"]</td>
+                            <td>@customer["NetAmount"]</td>
+                            <td>@customer["UserID"]</td>
+                            <td><a class="btn btn-outline-secondary btn-xs" asp-controller="Customer" asp-action="CustomerSave" asp-route-CustomerID="@customer["CustomerID"]"><i class="bi bi-pencil"></i></a></td>
+                            <td>
+                                <form method="post" asp-controller="Customer" asp-action="CustomerDelete">
+                                    <input type="hidden" name="CustomerID" value="@customer["CustomerID"]" />
+                                    <button onclick="return confirm('Are you sure you want to Delete?')" type="submit" class="btn btn-outline-danger btn-xs">
+                                        <i class="bi bi-trash"></i>
+                                    </button>
+                                </form>
+                            </td>
+                        </tr>
+                    }
+                    @* <tr>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td><a class="btn btn-primary" asp-controller="Customer" asp-action="AddCustomerHelper">Add Customer Helper</a></td>
+                    </tr> *@
+                </tbody>
+            </table>
+            <!-- End Table with hoverable rows -->
+
+        </div>
+    </div>
+</div>

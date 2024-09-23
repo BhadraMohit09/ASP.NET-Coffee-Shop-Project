@@ -1,0 +1,62 @@
+﻿@* @model List<FormCRUDB_MAB.Models.BillsModel> *@
+@model DataTable
+@using System.Data
+<div class="main" id="main">
+       
+    <div class="card">
+        <div class="card-body">
+            <h5 class="card-title text-left">Bill Details</h5>
+             
+            <!-- Table with hoverable rows -->
+            <table class="table table-hover">
+                <thead>
+                    <a class="btn btn-primary float-end" asp-controller="Bills" asp-action="BillsSave">Add Bills</a>
+
+                    <tr>
+                        <th scope="col">Bill Number</th>
+                        <th scope="col">Bill Date</th>
+                        <th scope="col">Order ID</th>
+                        <th scope="col">Total Amount</th>
+                        <th scope="col">Discount</th>
+                        <th scope="col">Net Amount</th>
+                        <th scope="col">User ID</th>
+                    </tr>
+                   
+                </thead>
+                <tbody>
+                    @foreach (DataRow dataRow in Model.Rows)
+                    {
+                        <tr>
+                            <td>@dataRow["BillNumber"]</td>
+                            <td>@dataRow["BillDate"]</td>
+                            <td>@dataRow["OrderID"]</td>
+                            <td>@dataRow["TotalAmount"]</td>
+                            <td>@dataRow["Discount"]</td>
+                            <td>@dataRow["NetAmount"]</td>
+                            <td>@dataRow["UserID"]</td>
+                            <td>
+                                <a class="btn btn-outline-secondary btn-xs" asp-action="BillsSave" asp-controller="Bills" asp-route-BillID="@dataRow["BillID"]">
+                                    <i class="bi bi-pencil"></i>
+                                </a></td>
+                            <td>
+                                <form method="post" asp-controller="Bills" asp-action="BillDelete">
+                                    <input type="hidden" name="BillID" value="@dataRow["BillID"]" />
+                                    <button onclick="return confirm('Are you sure you want to Delete?')" type="submit" class="btn btn-outline-danger btn-xs">
+                                        <i class="bi bi-trash"></i>
+                                    </button>
+                                </form>
+                            </td>
+                        </tr>
+                    }
+                    
+
+                   @*  <tr>
+                        <td><a class="btn btn-primary" asp-controller="Bills" asp-action="AddBillsHelper">Add Bills(Helper)</a></td>
+                    </tr> *@
+                </tbody>
+            </table>
+            <!-- End Table with hoverable rows -->
+
+        </div>
+    </div>
+</div>

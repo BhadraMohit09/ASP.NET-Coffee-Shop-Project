@@ -1,0 +1,70 @@
+﻿@model BillsModel
+<main id="main" class="main">
+    <form method="post" asp-action="SaveBills" asp-controller="Bills">
+        @Html.HiddenFor(x => x.BillID)
+
+        <div class="container">
+            <h2 class="text-center">Bill Details</h2>
+            <div class="form-group">
+                <label><span class="text-danger">*</span>Bill Number</label>
+                <input type="text" class="form-control" asp-for="BillNumber" />
+                <span asp-validation-for="BillNumber" class="text-danger"></span>
+            </div>
+            <br />
+            <div class="form-group">
+                <label><span class="text-danger">*</span>Bill Date</label>
+                <input type="date" class="form-control" asp-for="BillDate" />
+                <span asp-validation-for="BillDate" class="text-danger"></span>
+            </div>
+            <br />
+            <div class="form-group">
+                <label><span class="text-danger">*</span>OrderID</label>
+                <input type="text" class="form-control" asp-for="OrderId"/>
+                <span asp-validation-for="OrderId" class="text-danger"></span>
+            </div>
+            <br />
+            <div class="form-group">
+                <label><span class="text-danger">*</span>Total Amount</label>
+                <input type="number" class="form-control" asp-for="TotalAmount"/>
+                <span asp-validation-for="TotalAmount" class="text-danger"></span>
+            </div>
+            <br />
+            <div class="form-group">
+                <label><span class="text-danger">*</span>Discount</label>
+                <input type="text" class="form-control" asp-for="Discount"/>
+                <span asp-validation-for="Discount" class="text-danger"></span>
+            </div>
+            <br />
+            <div class="form-group">
+                <label><span class="text-danger">*</span>Net Amount</label>
+                <input type="text" class="form-control" asp-for="NetAmount"/>
+                <span asp-validation-for="NetAmount" class="text-danger"></span>
+            </div>
+            <br />
+
+            <div class="form-group">
+                <label><span class="text-danger">*</span>UserID</label>
+                <div class="dropdown">
+                    <select class="w-25 p-2" asp-for="UserId">
+                        <option>1</option>
+                        <option>2</option>
+                    </select>
+                  
+                    <span asp-validation-for="UserId" class="text-danger"></span>
+                </div>
+            </div>
+
+            <br />
+            <div>
+                <button type="submit" class="btn btn-primary px-5">Submit</button>
+            </div>
+        </div>
+    </form>
+</main>
+@section Scripts
+{
+
+    @{
+        await Html.RenderPartialAsync("_validationscriptspartial");
+    }
+}
